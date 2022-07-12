@@ -7,18 +7,9 @@ WFLAGS := -Wall -Wextra -Wpedantic --std=c99
 all: release
 
 .PHONY: debug
-debug: debug-sanitize
-
-.PHONY: debug-sanitize
-debug-sanitize: DEBUG = -fsanitize=address,undefined
-debug-sanitize: debug-common
-
-.PHONY: debug-no-sanitize
-debug-no-sanitize: debug-common
-
-.PHONY: debug-common
-debug-common: OPTIM := -g
-debug-common: dirs lib/libtyrant.a
+debug: DEBUG = -fsanitize=address,undefined
+debug: OPTIM := -g
+debug: dirs lib/libtyrant.a
 
 .PHONY: release
 release: OPTIM := -O3
